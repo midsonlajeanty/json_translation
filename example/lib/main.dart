@@ -66,7 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    // Iinitialize the package with context 
     JsonTranslation.init(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -75,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // 
             Text($("hello-world")),
           ],
         ),

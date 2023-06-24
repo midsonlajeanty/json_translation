@@ -32,18 +32,16 @@ Use one JSON file/object per language to represent the key:`String`/value:`Strin
 
 The JSON file name must match exactly with a language code described in `supportedLocales`.
 
-```
-...
+```bash
 lib/
 locales/
     en.json
     fr.json
-...
 ```
 
 ##### Example JSON file
 
-```json
+```jsonc
 // en.json
 {
 	"hello-world": "Hello World."
@@ -88,6 +86,6 @@ Container(
 
 You have a lot of options to contribute to this project ! You can :
 
-- [Fork if](https://github.com/midsonlajeanty/json_translation) on Github
+- [Fork](https://github.com/midsonlajeanty/json_translation) on Github
 - [Submit](https://github.com/midsonlajeanty/json_translation/issues) a bug report.
 - [Donate](https://www.buymeacoffee.com/louismidson) to the Developper

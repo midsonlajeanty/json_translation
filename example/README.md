@@ -1,6 +1,6 @@
-# exemple
+# json_translation_example
 
-A new Flutter project.
+Demonstrates how to use the json_translation plugin.
 
 ## Getting Started
 

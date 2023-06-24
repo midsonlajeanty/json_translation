@@ -1,7 +1,18 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
-import 'function.dart';
+
+/// Load a string from a file.
+Future<Map<String, dynamic>> loadString(String filePath) async {
+  try {
+    final content = await rootBundle.loadString(filePath);
+    return json.decode(content);
+  } catch (e) {
+    throw Exception("Unable to load asset: $filePath");
+  }
+}
 
 /// A class that provides a way to translate a string.
 class JsonTranslation {
@@ -12,20 +23,22 @@ class JsonTranslation {
 
   /// The translation object of context.
   static JsonTranslation? transCtx;
+  static String? _localesPath;
 
   /// The map of translations.
   static Map<dynamic, dynamic> _values = {};
 
   /// Initialize the translation object [JsonTranslation.init(context)].
-  static void init(BuildContext context) async {
+  static void init(BuildContext context, {  String? localesPath }) async {
     transCtx = Localizations.of<JsonTranslation>(context, JsonTranslation);
+    _localesPath = localesPath;
   }
 
   /// Get the keys and their translations
   static Future<JsonTranslation> load(Locale locale) async {
     JsonTranslation translations = JsonTranslation(locale);
-
-    final content = await loadString('locales/${locale.languageCode}.json');
+    final path = _localesPath ?? "locales";
+    final content = await loadString('$path/${locale.languageCode}.json');
     _values = Map<dynamic, dynamic>.from(content);
 
     return translations;
@@ -37,7 +50,7 @@ class JsonTranslation {
 
   /// Get the translation of a key.
   String translate(String key) {
-    return _values[key] ?? '**$key';
+    return _values[key] ?? '*$key';
   }
 }
 
